@@ -1,0 +1,30 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+''' pikaboo command line utility'''
+
+import sys, logging
+
+try:
+    import argparse
+except ImportError:
+    print "argparse required but missing, try 'easy_install argparse' or 'pip install argparse'"
+    sys.exit(1)
+
+from pikaboo.Hide import hide
+from pikaboo.Retrieve import retrieve
+
+if __name__ == '__main__':
+  parser = argparse.ArgumentParser(prog="pikaboo", description = "python steganography tool")    
+  parser.add_argument("input_image", help="Input image file")
+  parser.add_argument("output_image", help="Output image file")
+  args = parser.parse_args()
+
+  s = '''Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'''  
+  src_img_path = args.input_image
+  dest_img_path = args.output_image
+  key, passcode = hide(s, src_img_path, dest_img_path)  
+  print 'key = %s, passcode = %s' % (key,passcode)
+  got = retrieve(dest_img_path, key, passcode)
+  print s == got
+
