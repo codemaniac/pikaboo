@@ -1,4 +1,8 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+from pikaboo.Hide import hide
+from pikaboo.Retrieve import retrieve
 
 def main():  
   s = '''Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'''  
@@ -7,7 +11,7 @@ def main():
   key, passcode = hide(s, src_img_path, dest_img_path)  
   print 'key = %s, passcode = %s' % (key,passcode)
   got = retrieve(dest_img_path, key, passcode)
-  print s == got
+  print 'TEST SUCCESSFUL !' if s == got else 'TEST FAILED !'
 
 if __name__ == '__main__':
   main()

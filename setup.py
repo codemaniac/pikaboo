@@ -12,6 +12,7 @@ setup(
     author_email='ashish.ap.rao@gmail.com',
     packages=['pikaboo'],
     scripts=['bin/pikaboo'],
+    test_suite="test.test",
     url='https://github.com/codemaniac/pikaboo',
     license='BSD',
     description='Library and CLI to perform steganography',
